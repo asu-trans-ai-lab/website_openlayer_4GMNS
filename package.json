@@ -1,0 +1,30 @@
+{
+  "name": "gmns_node_openlayer",
+  "version": "1.0.0",
+  "description": "gmns node and link",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build --public-url . index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/756640930/gmns-node-and-link.git"
+  },
+  "author": "han_shuai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/756640930/gmns-node-and-link/issues"
+  },
+  "homepage": "https://github.com/756640930/gmns-node-and-link#readme",
+  "dependencies": {
+    "@turf/turf": "^5.1.6",
+    "axios": "^0.20.0",
+    "link.js": "^0.1.4",
+    "ol": "^6.4.3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}

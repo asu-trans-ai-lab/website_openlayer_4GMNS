@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Using Parcel with OpenLayers</title>
+    <script src="https://api.mapbox.com/mapbox.js/plugins/arc.js/v0.1.0/arc.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/build/ol.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.1.1/css/ol.css"
+      type="text/css"
+    />
+
+   <style>
+      #map{
+        position:absolute;
+      }
+      .ol-popup {
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #cccccc;
+        bottom: 50px;
+        left: -30px;
+        min-width: 280px;
+      }
+      .ol-popup:after, 
+      .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+      .ol-popup:after {
+        border-top-color: white;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+      }
+      .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+      }
+      .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 2px;
+        right: 8px;
+      }
+      .ol-popup-closer:after {
+        content: "✖";
+      }
+      #controls1 {
+        display:inline;
+      }
+      #controls2 {
+        display:inline;
+      }
+      /* #pan-to-phoenix {
+        display:inline;
+      }
+      #pan-to-washington {
+        display:inline;
+      } */
+   </style>
+  </head>
+  <body>
+    <!-- <div id="ControlLayers">
+      <input type="checkbox" id="osm" checked />OpenStreetMap
+      <input type="checkbox" id="bingmap" />Bing Map
+    </div> -->
+    <div id="ControlLayers">
+      <select onchange="changeMap()" id="mapLayers">
+        <option value="OSM" id="osm">OpenStreetMap</option>
+        <option value="BY" id="bingmap">Bing Map</option>
+      </select>
+    </div>
+    <button id="pan-to-phoenix">Phoenix</button>
+    <div id="controls1">
+      <input type="checkbox" id="Agent1" checked ='checked' />Agent1
+      <input type="checkbox" id="Agent2" checked ='checked' />Agent2
+      <input type="checkbox" id="macronet" />macronet
+      <input type="checkbox" id="mesonet" />mesonet
+      <input type="checkbox" id="micronet" />micronet
+    </div>
+  </br>
+    <button id="pan-to-washington">Sioux Falls</button>
+    <div id="controls2">
+      <input type="checkbox" id="Agent3" checked ='checked' />Sioux Falls
+    </div>
+</br>
+    <div id="map" class="map" style="width:80%; height:600px" tabindex="0"></div>
+    <!-- <div id="popup" class="ol-popup">
+      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+      <div id="popup-content"></div>
+    </div> -->
+    <script src="./data.js"></script>
+    <script src="./network1.js"></script>
+    <script src="./network2.js"></script>
+    <script src="./network3.js"></script>
+    <script src="./network4.js"></script>
+    <script src="./map.js"></script>
+    <script src="./index.js"></script>
+    <script src="./node.js"></script>
+   <script>
+     function changeMap() {
+       if(document.getElementById("mapLayers").value=='OSM') {
+        map.getLayers().item(0).setVisible(true);
+        map.getLayers().item(1).setVisible(false);
+       }
+       if(document.getElementById("mapLayers").value=='BY') {
+        map.getLayers().item(0).setVisible(false);
+        map.getLayers().item(1).setVisible(true);
+       }
+      
+     }
+   </script>
+  </body>
+</html>
