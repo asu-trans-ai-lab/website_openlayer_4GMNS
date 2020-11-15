@@ -40,8 +40,8 @@ var geojsonObject2 = node_data;
 var nodeSource = new ol.source.Vector({
   features: new ol.format.GeoJSON().readFeatures(geojsonObject2),
   attributions:
-  '</br>'+'Link and node data by ' +
-  '<a href="https://github.com/xzhou99">Xuesong Zhou</a>,'
+  '</br>'+'Node and link data in ' +
+  '<a href="https://github.com/zephyr-data-specs/GMNS">GMNS format</a>,'
 });
 
 
