@@ -116,8 +116,11 @@ var link3_data = window.link3_geojson_data;
 var styleFunction4 = function (feature) {
   return styles4[feature.getGeometry().getType()];
 };
-var link4_data = window.link4_geojson_data;
-
+var link41_data = window.link41_geojson_data;
+var link42_data = window.link42_geojson_data;
+var link43_data = window.link43_geojson_data;
+var link44_data = window.link44_geojson_data;
+var link45_data = window.link45_geojson_data;
 
 //转化geojson数据的坐标系
 for(var i = 0;i < link_data.features.length;i++){
@@ -138,12 +141,20 @@ for(var i = 0;i < link3_data.features.length;i++){
     link3_data.features[i].geometry.coordinates[j] =ol.proj.transform(link3_data.features[i].geometry.coordinates[j],'EPSG:4326','EPSG:3857');
   }
 };
-for(var i = 0;i < link4_data.features.length;i++){
-  //开始转换
-  for(var j=0;j<link4_data.features[i].geometry.coordinates.length;j++){
-    link4_data.features[i].geometry.coordinates[j] =ol.proj.transform(link4_data.features[i].geometry.coordinates[j],'EPSG:4326','EPSG:3857');
+function transform_coordinates(data) {
+  for(var i = 0;i < data.features.length;i++){
+    //开始转换
+    for(var j=0;j<data.features[i].geometry.coordinates.length;j++){
+      data.features[i].geometry.coordinates[j] =ol.proj.transform(data.features[i].geometry.coordinates[j],'EPSG:4326','EPSG:3857');
+    }
   }
 };
+
+transform_coordinates(link41_data);
+transform_coordinates(link42_data);
+transform_coordinates(link43_data);
+transform_coordinates(link44_data);
+transform_coordinates(link45_data);
 
 var test = ol.proj.transform([-96.770683,43.612854],'EPSG:4326','EPSG:3857');
 console.log(test);
@@ -151,7 +162,11 @@ console.log(test);
 var geojsonObject = link_data;
 var geojsonObject2 = link2_data;
 var geojsonObject3 = link3_data;
-var geojsonObject4 = link4_data;
+var geojsonObject41 = link41_data;
+var geojsonObject42 = link42_data;
+var geojsonObject43 = link43_data;
+var geojsonObject44 = link44_data;
+var geojsonObject45 = link45_data;
 // 加载道路geojson对象数据
 var vectorSource = new ol.source.Vector({
   features: new ol.format.GeoJSON().readFeatures(geojsonObject),
@@ -162,8 +177,20 @@ var vectorSource2 = new ol.source.Vector({
 var vectorSource3 = new ol.source.Vector({
   features: new ol.format.GeoJSON().readFeatures(geojsonObject3),
 });
-var vectorSource4 = new ol.source.Vector({
-  features: new ol.format.GeoJSON().readFeatures(geojsonObject4),
+var vectorSource41 = new ol.source.Vector({
+  features: new ol.format.GeoJSON().readFeatures(geojsonObject41),
+});
+var vectorSource42 = new ol.source.Vector({
+  features: new ol.format.GeoJSON().readFeatures(geojsonObject42),
+});
+var vectorSource43 = new ol.source.Vector({
+  features: new ol.format.GeoJSON().readFeatures(geojsonObject43),
+});
+var vectorSource44 = new ol.source.Vector({
+  features: new ol.format.GeoJSON().readFeatures(geojsonObject44),
+});
+var vectorSource45 = new ol.source.Vector({
+  features: new ol.format.GeoJSON().readFeatures(geojsonObject45),
 });
 
 var link_Layer = new ol.layer.Vector({
@@ -179,12 +206,32 @@ var link_Layer2 = new ol.layer.Vector({
 var link_Layer3 = new ol.layer.Vector({
   source: vectorSource3,
   style: styleFunction3,
+  visible: true,
+});
+var link_Layer41 = new ol.layer.Vector({
+  source: vectorSource41,
+  style: styleFunction4,
   visible: false,
 });
-var link_Layer4 = new ol.layer.Vector({
-  source: vectorSource4,
+var link_Layer42 = new ol.layer.Vector({
+  source: vectorSource42,
   style: styleFunction4,
-  visible: true,
+  visible: false,
+});
+var link_Layer43 = new ol.layer.Vector({
+  source: vectorSource43,
+  style: styleFunction4,
+  visible: false,
+});
+var link_Layer44 = new ol.layer.Vector({
+  source: vectorSource44,
+  style: styleFunction4,
+  visible: false,
+});
+var link_Layer45 = new ol.layer.Vector({
+  source: vectorSource45,
+  style: styleFunction4,
+  visible: false,
 });
 
 
@@ -204,26 +251,14 @@ let control2 = document.getElementById('controls2');
                 // 通过DOM元素的id值来判断应该对哪个图层进行显示
                 switch(event.target.id){
                     case "Agent3": 
-                        map.getLayers().item(7).setVisible(true);
-                        break;
-                    case "Agent4": 
-                        map.getLayers().item(8).setVisible(true);
-                        break;
-                    case "Agent5": 
-                        map.getLayers().item(9).setVisible(true);
+                        map.getLayers().item(4).setVisible(true);
                         break;
                 }
             }else{                                         // 如果取消某一复选框
                 // 通过DOM元素的id值来判断应该对哪个图层进行隐藏
                 switch(event.target.id){
                     case "Agent3": 
-                        map.getLayers().item(7).setVisible(false);
-                        break;
-                    case "Agent4": 
-                        map.getLayers().item(8).setVisible(false);
-                        break;
-                    case "Agent5": 
-                        map.getLayers().item(9).setVisible(false);
+                        map.getLayers().item(4).setVisible(false);
                         break;
                 }
             } 
@@ -248,7 +283,11 @@ let control1 = document.getElementById('controls1');
                           map.getLayers().item(3).setVisible(true);
                           break;
                     case "micronet": 
-                          map.getLayers().item(4).setVisible(true);
+                          map.getLayers().item(7).setVisible(true);
+                          map.getLayers().item(8).setVisible(true);
+                          map.getLayers().item(9).setVisible(true);
+                          map.getLayers().item(10).setVisible(true);
+                          map.getLayers().item(11).setVisible(true);
                           break;
                 }
             }else{                                         // 如果取消某一复选框
@@ -267,7 +306,11 @@ let control1 = document.getElementById('controls1');
                         map.getLayers().item(3).setVisible(false);
                         break;
                       case "micronet": 
-                        map.getLayers().item(4).setVisible(false);
+                        map.getLayers().item(7).setVisible(false);
+                        map.getLayers().item(8).setVisible(false);
+                        map.getLayers().item(9).setVisible(false);
+                        map.getLayers().item(10).setVisible(false);
+                        map.getLayers().item(11).setVisible(false);
                         break;
                 }
             } 
@@ -586,7 +629,11 @@ map.addLayer(flightsLayer_2);
 // map.addLayer(flightsLayer_3);
 // map.addLayer(flightsLayer_4);
 // map.addLayer(flightsLayer_5);
-map.addLayer(link_Layer4);
+map.addLayer(link_Layer41);
+map.addLayer(link_Layer42);
+map.addLayer(link_Layer43);
+map.addLayer(link_Layer44);
+map.addLayer(link_Layer45);
 var pointsPerMs = 0.2;
 function animateFlights(event) {
   var vectorContext = ol.render.getVectorContext(event);

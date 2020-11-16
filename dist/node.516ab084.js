@@ -157,7 +157,7 @@ var geojsonObject2 = node_data; //加载node1的geojson对象数据
 
 var nodeSource = new ol.source.Vector({
   features: new ol.format.GeoJSON().readFeatures(geojsonObject2),
-  attributions: '</br>' + 'Link and node data by ' + '<a href="https://github.com/xzhou99">Xuesong Zhou</a>,'
+  attributions: '</br>' + 'Node and link data in ' + '<a href="https://github.com/zephyr-data-specs/GMNS">GMNS format</a>,'
 });
 var node_Layer = new ol.layer.Vector({
   source: nodeSource,
@@ -248,7 +248,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49232" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50022" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
